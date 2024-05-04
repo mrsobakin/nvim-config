@@ -5,6 +5,7 @@ vim.opt.signcolumn = "yes"
 vim.api.nvim_set_hl(0, "SignColumn", { ctermbg=0, bg=NONE })
 vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg=0, bg=NONE })
 vim.api.nvim_set_hl(0, "FloatBorder", { ctermbg=0, bg=NONE })
+vim.api.nvim_set_hl(0, "Pmenu", { guibg=ctermbg })
 vim.diagnostic.config{
     update_in_insert = true
 }
@@ -44,7 +45,7 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 end
 
 
-local signs = { Error = "", Warn = "", Hint = "", Info = "¡" }
+local signs = { Error = "", Warn = "⚠", Hint = "", Info = "¡" }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
