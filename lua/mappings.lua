@@ -13,8 +13,15 @@ vim.keymap.set("n", ";", ":", { noremap = true })
 
 vim.keymap.set("n", "<Esc>", ":noh<CR>", { noremap = true, silent = true })
 
+vim.keymap.set("n", "n", "nzz", { silent = true })
+vim.keymap.set("n", "N", "Nzz", { silent = true })
+vim.keymap.set("n", "*", function()
+    vim.opt.hlsearch = true
+    word = vim.fn.expand('<cword>')
+    vim.fn.setreg("/", word)
+end, { silent = true })
 
--- Lsp
+--- Lsp
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set("n", "<Space>e", vim.diagnostic.open_float)
