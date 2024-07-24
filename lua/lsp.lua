@@ -5,4 +5,5 @@ require("utils").load_servers{
     require("lsp.clangd"),
     require("lsp.texlab"),
     require("lsp.bash"),
+    require("lsp.go"),
 }
