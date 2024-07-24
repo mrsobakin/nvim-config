@@ -11,6 +11,8 @@ vim.keymap.set("n", "<A-k>", ":bn<CR>", { silent = true })
 
 vim.keymap.set("n", "<Space>", "<Nop>", { noremap = true, silent = true })
 vim.keymap.set("n", ";", ":", { noremap = true })
+vim.cmd.cabbrev({ "W", "<c-r>=((getcmdtype()==':' && getcmdpos()==1) ? 'w' : 'W')<CR>" })
+
 
 vim.keymap.set("n", "<Esc>", ":noh<CR>", { noremap = true, silent = true })
 
