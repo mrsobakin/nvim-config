@@ -1,4 +1,5 @@
 vim.keymap.set("n", "ZA", ":%y+<CR>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "i" }, "<F1>", "<Esc>")
 
 vim.keymap.set({ "n", "i" }, "<C-h>", "<Left>")
 vim.keymap.set({ "n", "i" }, "<C-j>", "<Down>")
