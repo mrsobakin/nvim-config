@@ -6,6 +6,9 @@ return {
                 pylint = {
                     enabled = true,
                 },
+                pyflakes = {
+                    enabled = false,
+                },
             },
         },
     },
