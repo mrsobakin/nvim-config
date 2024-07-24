@@ -2,6 +2,8 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.opt.signcolumn = "yes"
+
+vim.cmd(":colorscheme vim")
 vim.api.nvim_set_hl(0, "SignColumn", { ctermbg=0, bg=NONE })
 vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg=0, bg=NONE })
 vim.api.nvim_set_hl(0, "FloatBorder", { ctermbg=0, bg=NONE })
