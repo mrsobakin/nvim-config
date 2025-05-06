@@ -1,4 +1,0 @@
-return {
-    "bashls", 
-    settings = { },
-}

@@ -1,4 +1,0 @@
-return {
-    "texlab", 
-    settings = {},
-}
