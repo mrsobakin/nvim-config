@@ -1,66 +1,80 @@
-vim.keymap.set("n", "ZA", ":%y+<CR>", { noremap = true, silent = true })
-vim.keymap.set({ "n", "i" }, "<F1>", "<Esc>")
+local map = function(modes, lhs, rhs, desc_or_opts)
+    local modes_table = {}
+    for i = 1, #modes do
+        modes_table[i] = modes:sub(i, i)
+    end
 
-vim.keymap.set({ "n", "i" }, "<C-h>", "<Left>")
-vim.keymap.set({ "n", "i" }, "<C-j>", "<Down>")
-vim.keymap.set({ "n", "i" }, "<C-k>", "<Up>")
-vim.keymap.set({ "n", "i" }, "<C-l>", "<Right>")
+    local opts = desc_or_opts
+    if type(desc_or_opts) ~= "table" then
+        opts = {
+            desc = desc_or_opts,
+            noremap = true,
+            silent = true,
+        }
+    end
 
-vim.keymap.set("n", "<A-j>", ":bp<CR>", { silent = true })
-vim.keymap.set("n", "<A-k>", ":bn<CR>", { silent = true })
+    vim.keymap.set(modes_table, lhs, rhs, opts)
+end
 
-vim.keymap.set("n", "<Space>", "<Nop>", { noremap = true, silent = true })
-vim.keymap.set("n", ";", ":", { noremap = true })
-vim.cmd.cabbrev({ "W", "<c-r>=((getcmdtype()==':' && getcmdpos()==1) ? 'w' : 'W')<CR>" })
+local cabbrev = function(alias, original)
+    vim.cmd.cabbrev({ alias, "<c-r>=((getcmdtype()==':' && getcmdpos()==1) ? '" .. original .. "' : '" .. alias .. "')<CR>" })
+end
 
+-- Misc
+map("n", "ZA", ":%y+<CR>", "Copy everything into system buffer")
+map("n", "<F5>", ":term make run<CR>")
 
-vim.keymap.set("n", "<Esc>", ":noh<CR>", { noremap = true, silent = true })
+-- Mistypes
+map("vni", "<F1>", "<Esc>")
+map("vn", "<Space>", "<Nop>")
+map("vn", ";", ":")
+cabbrev("W", "w")
 
-vim.keymap.set("n", "n", "nzz", { silent = true })
-vim.keymap.set("n", "N", "Nzz", { silent = true })
-vim.keymap.set("n", "*", function()
+-- Navigation in insert mode
+map("ni", "<C-h>", "<Left>")
+map("ni", "<C-j>", "<Down>")
+map("ni", "<C-k>", "<Up>")
+map("ni", "<C-l>", "<Right>")
+
+-- Buffer navigation
+map("vn", "<A-k>", ":bn<CR>", "Next buffer")
+map("vn", "<A-j>", ":bp<CR>", "Previous buffer")
+
+-- Searching
+map("n", "<Esc>", ":noh<CR>")
+map("vn", "n", "nzz")
+map("vn", "N", "Nzz")
+map("vn", "*", function()
     vim.opt.hlsearch = true
     word = vim.fn.expand('<cword>')
     vim.fn.setreg("/", word)
-end, { silent = true })
+end)
 
---- Lsp
+-- LSP / Global
+map("n", "<Space>e", vim.diagnostic.open_float, "Floating diagnostics")
+map("n", "[d", vim.diagnostic.goto_prev, "Previous diagnostic")
+map("n", "]d", vim.diagnostic.goto_next, "Next diagnostic")
+map("n", "<Space>q", vim.diagnostic.setloclist)
 
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-vim.keymap.set("n", "<Space>e", vim.diagnostic.open_float)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-vim.keymap.set("n", "<Space>q", vim.diagnostic.setloclist)
-
--- Use LspAttach autocommand to only map the following keys
--- after the language server attaches to the current buffer
+-- LSP / Buffer
 vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-  callback = function(ev)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(ev)
+        local opts = { buffer = ev.buf }
 
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local opts = { buffer = ev.buf }
-    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-    vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-    vim.keymap.set("n", "<Space>wa", vim.lsp.buf.add_workspace_folder, opts)
-    vim.keymap.set("n", "<Space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-    vim.keymap.set("n", "<Space>wl", function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, opts)
-    vim.keymap.set("n", "<Space>D", vim.lsp.buf.type_definition, opts)
-    vim.keymap.set("n", "<Space>rn", vim.lsp.buf.rename, opts)
-    vim.keymap.set({ "n", "v" }, "<Space>ca", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-    vim.keymap.set("n", "<Space>f", function()
-      vim.lsp.buf.format { async = true }
-    end, opts)
-  end,
+        -- Jumps
+        map("n", "gD", vim.lsp.buf.declaration, opts)
+        map("n", "gd", vim.lsp.buf.definition, opts)
+        map("n", "gi", vim.lsp.buf.implementation, opts)
+        map("n", "gr", vim.lsp.buf.references, opts)
+
+        -- Definitions
+        map("n", "K", vim.lsp.buf.hover, opts)
+        map("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+        map("n", "<Space>D", vim.lsp.buf.type_definition, opts)
+
+        -- Actions
+        map("n", "<Space>rn", vim.lsp.buf.rename, opts)
+        map("n", "<Space>a", vim.lsp.buf.code_action, opts)
+    end,
 })
-
-
