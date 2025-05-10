@@ -24,10 +24,9 @@ return {
                     max_length = function()
                         return vim.o.columns
                     end,
-                    -- colored_icons = false,
                     buffers_color = {
-                        active = {fg='black', bg='LightGrey'},
-                        inactive = {fg='LightGrey', bg='black'},
+                        active = { fg='black', bg='LightGrey' },
+                        inactive = { fg='LightGrey', bg='black' },
                     },
                     symbols = {
                         alternate_file = '',
