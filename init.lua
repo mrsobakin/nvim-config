@@ -12,3 +12,4 @@ require("lazy").setup("plugins", {
 require("lsp")
 
 require('langmapper').automapping({ global = true, buffer = true })
+require("theme")
