@@ -19,20 +19,4 @@ function M.init_lazy()
 end
 
 
-function load_server(lspconfig, server) 
-    server_name = server[1]
-    table.remove(server, 1)
-    lspconfig[server_name].setup(server)
-end
-
-
-function M.load_servers(servers)
-    lspconfig = require("lspconfig")
-
-    for _, server in ipairs(servers) do
-        load_server(lspconfig, server)
-    end
-end
-
-
 return M
