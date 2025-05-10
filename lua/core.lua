@@ -21,6 +21,7 @@ vim.opt.softtabstop = 4
 
 vim.opt.undofile = true
 vim.opt.termguicolors = true
+vim.opt.matchpairs = vim.opt.matchpairs + "<:>"
 
 
 vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#000000]]
