@@ -47,11 +47,6 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 end
 
 
-local signs = { Error = "", Warn = "⚠", Hint = "", Info = "¡" }
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
 
 
 
@@ -72,3 +67,13 @@ vim.opt.langmap = vim.fn.join({
     escape(ru_shift) .. ';' .. escape(en_shift),
     escape(ru) .. ';' .. escape(en),
 }, ',')
+vim.diagnostic.config({
+    signs = {
+        text = {
+            [vim.diagnostic.severity.INFO ] = '¡ ',
+            [vim.diagnostic.severity.HINT ] = ' ',
+            [vim.diagnostic.severity.WARN ] = '⚠ ',
+            [vim.diagnostic.severity.ERROR] = ' ',
+        }
+    }
+})
