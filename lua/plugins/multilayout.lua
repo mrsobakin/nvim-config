@@ -13,7 +13,6 @@ return {
             extra = { "sort" },
         },
         use_libukb = true,
-        libukb_path = "/usr/local/lib/libukb.so",
     },
     dev = {true}
 }
