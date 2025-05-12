@@ -42,9 +42,9 @@ map("vn", "<A-j>", ":bp<CR>", "Previous buffer")
 
 -- Searching
 map("n", "<Esc>", ":noh<CR>")
-map("vn", "n", "nzz")
-map("vn", "N", "Nzz")
-map("vn", "*", function()
+map("n", "n", "nzz")
+map("n", "N", "Nzz")
+map("n", "*", function()
     vim.opt.hlsearch = true
     word = vim.fn.expand('<cword>')
     vim.fn.setreg("/", word)
