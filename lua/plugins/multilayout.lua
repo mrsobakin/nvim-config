@@ -1,5 +1,5 @@
 return {
-    dir = "/home/sbkn/git/multilayout.nvim",
+    "mrsobakin/multilayout.nvim",
     config = {
         layouts = {
             ru = {
