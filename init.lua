@@ -10,6 +10,6 @@ require("lazy").setup("plugins", {
 })
 
 require("lsp")
+require("theme")
 
 require('langmapper').automapping({ global = true, buffer = true })
-require("theme")
