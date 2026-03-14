@@ -3,16 +3,14 @@ return {
     dependencies = {
         'hrsh7th/cmp-nvim-lsp',
     },
-    config = function()
-        local cmp = require('cmp')
+    opts = function()
+        vim.lsp.config("*", { capabilities = require("cmp_nvim_lsp").default_capabilities() })
 
-        cmp.setup({
+        local cmp = require("cmp")
+
+        return {
             preselect = cmp.PreselectMode.None,
-            completion = { completeopt = "menu,menuone,noselect" },
-            window = {
-                completion = cmp.config.window.bordered(),
-                documentation = cmp.config.window.bordered(),
-            },
+            completion = { completeopt = "menu,menuone,noinsert,noselect" },
             mapping = cmp.mapping.preset.insert({
                 ['<Tab>'] = cmp.mapping.select_next_item(),
                 ['<S-Tab>'] = cmp.mapping.select_prev_item(),
@@ -22,6 +20,6 @@ return {
             sources = {
                 { name = 'nvim_lsp' },
             }
-        })
+        }
     end,
 }
