@@ -1,4 +1,5 @@
 require("core")
+require("theme")
 require("mappings")
 
 require("utils").init_lazy()
@@ -10,6 +11,5 @@ require("lazy").setup("plugins", {
 })
 
 require("lsp")
-require("theme")
 
 require('langmapper').automapping({ global = true, buffer = true })
