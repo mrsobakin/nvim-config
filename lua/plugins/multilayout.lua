@@ -2,11 +2,7 @@ return {
     "mrsobakin/multilayout.nvim",
     config = {
         layouts = {
-            ru = {
-                names = { "Russian" },
-                from  = [[ёйцукенгшщзхъфывапролджэячсмитьбю.Ё"№;:?ЙЦУКЕНГШЩЗХЪ/ФЫВАПРОЛДЖЭЯЧСМИТЬБЮ,]],
-                to    = [[`qwertyuiop[]asdfghjkl;'zxcvbnm,./~@#$^&QWERTYUIOP{}|ASDFGHJKL:"ZXCVBNM<>?]],
-            }
+            ru = "ru",
         },
         aliases = {
             max_length = 2,
