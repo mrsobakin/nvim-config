@@ -11,7 +11,6 @@ local lsp_enable = function(servers)
     vim.lsp.enable(servers)
 end
 
-
 lsp_enable({
     'bashls',
     'clangd',
@@ -24,6 +23,7 @@ lsp_enable({
             gofumpt = true,
         },
     }},
+    'kotlin_lsp',
     'lua_ls',
     'pyrefly',
     {'rust_analyzer', {
