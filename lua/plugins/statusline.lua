@@ -78,7 +78,7 @@ local function get_sections()
 
     function M.encoding()
         local text = vim.bo.fileencoding or vim.bo.encoding
-        if #text then return nil end
+        if #text == 0 then return nil end
         return text
     end
 

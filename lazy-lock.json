@@ -7,8 +7,9 @@
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "mini-git": { "branch": "main", "commit": "832467238636e3dfa1db76de929996b6668c35ef" },
   "mini.diff": { "branch": "main", "commit": "fbb93ea1728e7c9d0944df8bd022a68402bd2e7e" },
-  "mini.statusline": { "branch": "main", "commit": "14919901649d20d020e659c63c03baa75cd94f33" },
+  "mini.statusline": { "branch": "main", "commit": "8c3829d4ef02b693f68e43fc131b433f11049b2b" },
   "mini.tabline": { "branch": "main", "commit": "872d89745a757b0d24e0cbc7d68ab4dda530cd0c" },
+  "multilayout.nvim": { "branch": "main", "commit": "105f22f6329f19a1824f58774d1899f2a69a5e77" },
   "nvim-cmp": { "branch": "main", "commit": "da88697d7f45d16852c6b2769dc52387d1ddc45f" },
   "nvim-lastplace": { "branch": "main", "commit": "0bb6103c506315044872e0f84b1f736c4172bb20" },
   "nvim-lspconfig": { "branch": "master", "commit": "dd261ad5266ab5bbec249d21efeceda98ff3e1a6" },
@@ -16,5 +17,5 @@
   "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
   "nvim-web-devicons": { "branch": "master", "commit": "d7462543c9e366c0d196c7f67a945eaaf5d99414" },
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
-  "yazi.nvim": { "branch": "main", "commit": "7ddc6f94e9b040391b3a0f7d50ee989a82bacbbd" }
+  "yazi.nvim": { "branch": "main", "commit": "b7df9d15b76881b8b4a6762e3a6d767f0ba3f511" }
 }

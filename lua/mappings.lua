@@ -1,4 +1,4 @@
-local map = function(modes, lhs, rhs, desc_or_opts)
+local function map(modes, lhs, rhs, desc_or_opts)
     local modes_table = {}
     for i = 1, #modes do
         modes_table[i] = modes:sub(i, i)
@@ -16,7 +16,7 @@ local map = function(modes, lhs, rhs, desc_or_opts)
     vim.keymap.set(modes_table, lhs, rhs, opts)
 end
 
-local cabbrev = function(alias, original)
+local function cabbrev(alias, original)
     vim.cmd.cabbrev({ alias, "<c-r>=((getcmdtype()==':' && getcmdpos()==1) ? '" .. original .. "' : '" .. alias .. "')<CR>" })
 end
 
@@ -46,7 +46,7 @@ map("n", "n", "nzz")
 map("n", "N", "Nzz")
 map("n", "*", function()
     vim.opt.hlsearch = true
-    word = vim.fn.expand('<cword>')
+    local word = vim.fn.expand('<cword>')
     vim.fn.setreg("/", word)
 end)
 

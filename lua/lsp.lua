@@ -1,4 +1,4 @@
-local lsp_enable = function(servers)
+local function lsp_enable(servers)
     for i, server in ipairs(servers) do
         if type(server) == "string" then
             vim.lsp.config(server, {})
@@ -14,25 +14,29 @@ end
 lsp_enable({
     'bashls',
     'clangd',
-    {'gopls', {
-        settings = {
-            analyses = {
-                unusedparams = true,
+    {
+        'gopls', {
+            settings = {
+                analyses = {
+                    unusedparams = true,
+                },
+                staticcheck = true,
+                gofumpt = true,
             },
-            staticcheck = true,
-            gofumpt = true,
-        },
-    }},
+        }
+    },
     'kotlin_lsp',
     'lua_ls',
     'pyrefly',
-    {'rust_analyzer', {
-        settings = {
-            diagnostics = {
-                enable = true,
+    {
+        'rust_analyzer', {
+            settings = {
+                diagnostics = {
+                    enable = true,
+                },
             },
-        },
-    }},
+        }
+    },
     'texlab',
     'ts_ls',
     'yamlls',

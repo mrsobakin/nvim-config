@@ -2,7 +2,6 @@ local utils = require("utils")
 
 return {
     "mrsobakin/mini.tabline",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = function()
         local devicons = require("nvim-web-devicons")
 
