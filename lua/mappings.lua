@@ -50,6 +50,11 @@ map("n", "*", function()
     vim.fn.setreg("/", word)
 end)
 
+-- Git
+map("n", "<Space>d", function()
+    MiniDiff.toggle_overlay()
+end, "Toggle diff overlay")
+
 -- LSP / Global
 map("n", "<Space>e", vim.diagnostic.open_float, "Floating diagnostics")
 map("n", "[d", vim.diagnostic.goto_prev, "Previous diagnostic")

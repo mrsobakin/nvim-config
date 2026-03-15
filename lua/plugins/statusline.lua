@@ -49,7 +49,7 @@ local function get_sections()
         if #diag == 0 then return nil end
 
         diag = diag:gsub("[HIWE]", {
-            ["H"] = "%#DiagnosticHint#"  .. "¡ ",
+            ["H"] = "%#DiagnosticHint#"  .. "󰋽 ",
             ["I"] = "%#DiagnosticInfo#"  .. " ",
             ["W"] = "%#DiagnosticWarn#"  .. "󰀪 ",
             ["E"] = "%#DiagnosticError#" .. " ",

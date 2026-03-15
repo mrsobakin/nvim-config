@@ -1,16 +1,24 @@
-vim.cmd(":colorscheme vim")
+vim.cmd("colorscheme vim")
 
 vim.opt.winborder = "rounded"
 
-vim.api.nvim_set_hl(0, "SignColumn", { bg = NONE, ctermbg = NONE })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = NONE, ctermbg = NONE })
-vim.api.nvim_set_hl(0, "FloatBorder", { fg = "White", ctermfg = "White", bg = NONE, ctermbg = NONE })
-vim.api.nvim_set_hl(0, "Pmenu", { bg = NONE, ctermbg = NONE })
+vim.api.nvim_set_hl(0, "SignColumn", {})
+vim.api.nvim_set_hl(0, "NormalFloat", {})
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = "White", ctermfg = "White"})
+vim.api.nvim_set_hl(0, "Pmenu", {})
 
--- MiniDiff signs
-vim.api.nvim_set_hl(0, "MiniDiffSignAdd",    { fg = "LightGreen" })
-vim.api.nvim_set_hl(0, "MiniDiffSignChange", { fg = "Yellow" })
-vim.api.nvim_set_hl(0, "MiniDiffSignDelete", { fg = "Red" })
+-- MiniDiff
+vim.api.nvim_set_hl(0, "MiniDiffSignAdd",        { fg = "LightGreen" })
+vim.api.nvim_set_hl(0, "MiniDiffSignChange",     { fg = "Yellow" })
+vim.api.nvim_set_hl(0, "MiniDiffSignDelete",     { fg = "Red" })
+
+vim.api.nvim_set_hl(0, "MiniDiffOverAdd",        { bg = "#001700" })  -- Added lines
+vim.api.nvim_set_hl(0, "MiniDiffOverContextBuf", { bg = "#001700" })  -- Lines with added words
+vim.api.nvim_set_hl(0, "MiniDiffOverChangeBuf",  { bg = "#005000" })  -- Added words
+
+vim.api.nvim_set_hl(0, "MiniDiffOverDelete",     { bg = "#220000" })  -- Removed lines
+vim.api.nvim_set_hl(0, "MiniDiffOverContext",    { bg = "#220000" })  -- Lines with removed words
+vim.api.nvim_set_hl(0, "MiniDiffOverChange",     { bg = "#500000" })  -- Removed words
 
 -- Status Line
 vim.api.nvim_set_hl(0, "StatusLine", { fg = "Grey", reverse=false })
@@ -32,7 +40,7 @@ vim.api.nvim_set_hl(0, "TabLineFill",   { reverse=false })
 vim.diagnostic.config({
     signs = {
         text = {
-            [vim.diagnostic.severity.INFO ] = '¡ ',
+            [vim.diagnostic.severity.INFO ] = '󰋽 ',
             [vim.diagnostic.severity.HINT ] = ' ',
             [vim.diagnostic.severity.WARN ] = '󰀪 ',
             [vim.diagnostic.severity.ERROR] = ' ',
