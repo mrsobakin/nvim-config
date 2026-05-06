@@ -1,7 +1,12 @@
 vim.cmd("colorscheme vim")
 
+-- Windows
 vim.opt.winborder = "rounded"
+vim.opt.pumborder = "rounded"
+vim.opt.pumheight = 5
+vim.opt.pummaxwidth = 60
 
+-- Misc colors
 vim.api.nvim_set_hl(0, "SignColumn", {})
 vim.api.nvim_set_hl(0, "NormalFloat", {})
 vim.api.nvim_set_hl(0, "FloatBorder", { fg = "White", ctermfg = "White"})
@@ -37,6 +42,7 @@ vim.api.nvim_set_hl(0, "TabLineMod",    { fg = "White", bg = "Black", bold = tru
 vim.api.nvim_set_hl(0, "TabLineSelMod", { fg = "Black", bg = "White", bold = true })
 vim.api.nvim_set_hl(0, "TabLineFill",   { reverse=false })
 
+-- Diagnostic signs
 vim.diagnostic.config({
     signs = {
         text = {

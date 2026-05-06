@@ -61,6 +61,21 @@ map("n", "[d", vim.diagnostic.goto_prev, "Previous diagnostic")
 map("n", "]d", vim.diagnostic.goto_next, "Next diagnostic")
 map("n", "<Space>q", vim.diagnostic.setloclist)
 
+-- LSP / Completions
+map('i', '<C-Space>', '<C-x><C-o>', 'Trigger completion')
+
+map('i', '<Tab>', function()
+  return vim.fn.pumvisible() == 1 and '<C-n>' or '<Tab>'
+end, { expr = true })
+
+map('i', '<S-Tab>', function()
+  return vim.fn.pumvisible() == 1 and '<C-p>' or '<S-Tab>'
+end, { expr = true })
+
+map('i', '<CR>', function()
+  return vim.fn.pumvisible() == 1 and '<C-y>' or '<CR>'
+end, { expr = true })
+
 -- LSP / Buffer
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
