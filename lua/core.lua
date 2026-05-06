@@ -13,6 +13,7 @@ vim.opt.autoindent = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
+vim.opt.cinkeys:remove(":")
 
 -- Don't continue comments on o/O/<Enter>
 vim.api.nvim_create_autocmd("FileType", {
