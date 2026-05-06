@@ -73,7 +73,12 @@ map('i', '<S-Tab>', function()
 end, { expr = true })
 
 map('i', '<CR>', function()
-  return vim.fn.pumvisible() == 1 and '<C-y>' or '<CR>'
+    if vim.fn.pumvisible() ~= 0 then
+        local item_selected = vim.fn.complete_info()['selected'] ~= -1
+        return item_selected and '<C-y>' or '<C-y><CR>'
+    else
+        return '<CR>'
+    end
 end, { expr = true })
 
 -- LSP / Buffer
