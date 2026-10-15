@@ -30,35 +30,42 @@ end
 local function setup_suffix_fixup()
     local orig_suffix = nil
 
+    local function get_suffix()
+        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+        local suffix = vim.api.nvim_get_current_line():sub(col + 1):match('^[%w_]+') or ''
+        return row, col, suffix
+    end
+
+    local function set_suffix(text)
+        local row, col, suffix = get_suffix()
+        if suffix ~= text then
+            vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col + #suffix, { text })
+        end
+    end
+
     vim.api.nvim_create_autocmd('CompleteChanged', {
         callback = vim.schedule_wrap(function()
-            local line = vim.api.nvim_get_current_line()
-            local col = vim.api.nvim_win_get_cursor(0)[2]
-            local suffix = line:sub(col + 1):match('^[%w_]+') or ''
+            -- Completion may have ended before we got scheduled.
+            if vim.fn.pumvisible() == 0 then return end
 
-            local new_suffix = ''
-
-            if vim.fn.complete_info()['selected'] == -1 then
-                if orig_suffix ~= nil then
-                    new_suffix = orig_suffix
-                else
-                    orig_suffix = suffix
-                    return
-                end
+            if orig_suffix == nil then
+                orig_suffix = select(3, get_suffix())
             end
 
-            vim.api.nvim_buf_set_text(
-                0,
-                vim.api.nvim_win_get_cursor(0)[1] - 1, col,
-                vim.api.nvim_win_get_cursor(0)[1] - 1, col + #suffix,
-                { new_suffix }
-            )
+            local selected = vim.fn.complete_info({ 'selected' }).selected ~= -1
+            set_suffix(selected and '' or orig_suffix)
         end)
     })
 
     vim.api.nvim_create_autocmd('CompleteDone', {
-        callback = function ()
+        callback = function()
+            local suffix = orig_suffix
             orig_suffix = nil
+
+            -- <C-e> restores the typed text, but not the suffix we've removed.
+            if suffix and vim.v.event.reason == 'cancel' then
+                vim.schedule(function() set_suffix(suffix) end)
+            end
         end
     })
 end
