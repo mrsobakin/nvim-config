@@ -5,4 +5,11 @@ return {
     { "neovim/nvim-lspconfig" },
     { "nvim-mini/mini-git", main = "mini.git", opts = {} },
     { "numToStr/Comment.nvim" },
+    {
+        "leafOfTree/vim-svelte-plugin",
+        ft = "svelte",
+        init = function()
+            vim.g.vim_svelte_plugin_use_typescript = 1
+        end,
+    },
 }
