@@ -51,6 +51,7 @@ lsp_enable({
             },
         }
     },
+    'svelte',
     'texlab',
     'tinymist',
     'ts_ls',
@@ -63,3 +64,6 @@ vim.diagnostic.config{
 
 require("lsp.completions")
 require("lsp.border-hack")
+
+-- SQL
+vim.cmd("let g:omni_sql_default_compl_type = 'syntax'")
