@@ -3,7 +3,7 @@ return {
     config = {
         override = {
             default_icon = {
-                icon = "",
+                icon = "󰈙",
                 color = "#6d8086"
             }
         }

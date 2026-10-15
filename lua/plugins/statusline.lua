@@ -50,9 +50,9 @@ local function get_sections()
 
         diag = diag:gsub("[HIWE]", {
             ["H"] = "%#DiagnosticHint#"  .. "󰋽 ",
-            ["I"] = "%#DiagnosticInfo#"  .. " ",
+            ["I"] = "%#DiagnosticInfo#"  .. "󰌶 ",
             ["W"] = "%#DiagnosticWarn#"  .. "󰀪 ",
-            ["E"] = "%#DiagnosticError#" .. " ",
+            ["E"] = "%#DiagnosticError#" .. "󰅚 ",
         })
 
         return diag .. "%#" .. parent_hl .. "#"
